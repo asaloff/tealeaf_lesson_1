@@ -18,21 +18,17 @@ ask_for_operation
 operation = gets.chomp.to_i
 
 until operation > 0 && operation <= 4
-    puts "Not a valid operation. Please try again."
-    ask_for_operation
-    operation = gets.chomp.to_i
+  puts "Not a valid operation. Please try again."
+  ask_for_operation
+  operation = gets.chomp.to_i
 end
 
-case operation
-when 1
-  answer = num1.to_i + num2.to_i
-when 2
-  answer = num1.to_i - num2.to_i
-when 3
- answer = num1.to_i * num2.to_i
-else
-  answer = num1.to_f / num2.to_f
-end
+answer = case operation
+         when 1 then num1.to_i + num2.to_i
+         when 2 then num1.to_i - num2.to_i
+         when 3 then num1.to_i * num2.to_i
+         when 4 then num1.to_f / num2.to_f
+         end
 
 say "The answer is #{answer}"
 
