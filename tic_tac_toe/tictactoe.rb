@@ -42,19 +42,21 @@ def two_in_a_row(hsh, mrkr)
 end
 
 def computer_picks_square(board)
+  defend_two_in_row = nil
+  attack_two_in_row = nil
+  
   WINNING_LINES.each do |line|
     currrent_positions = {line[0] => board[line[0]], line[1] => board[line[1]], line[2] => board[line[2]]}
     defend_two_in_row = two_in_a_row(currrent_positions, 'X')
     attack_two_in_row = two_in_a_row(currrent_positions, 'O')
-    if attack_two_in_row
-      board[attack_two_in_row] = 'O'
-    elsif defend_two_in_row
-      board[defend_two_in_row] = 'O'
-    else
-      computer_selection = board.select { |k, v| v == ' ' }.keys.sample
-      board[computer_selection] = 'O'
-      break
-    end
+  end
+  if attack_two_in_row
+    board[attack_two_in_row] = 'O'
+  elsif defend_two_in_row
+    board[defend_two_in_row] = 'O'
+  else
+    computer_selection = board.select { |k, v| v == ' ' }.keys.sample
+    board[computer_selection] = 'O'
   end
 end
 
