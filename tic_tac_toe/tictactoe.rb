@@ -29,13 +29,13 @@ def player_pick_square(board)
   begin
     puts 'Pick your space (1 - 9)'
     pick = gets.chomp.to_i
-  end until (pick > 0 and pick < 10) and spaces_left.include?(pick)
+  end until spaces_left.include?(pick)
   board[pick] = 'X'  
 end
 
-def two_in_a_row(hsh, mrkr)
-  if hsh.values.count(mrkr) == 2
-    hsh.select{|k,v| v == ' '}.keys.first
+def two_in_a_row(hash, marker)
+  if hash.values.count(marker) == 2
+    hash.select{|k,v| v == ' '}.keys.first
   else
     false
   end
@@ -82,6 +82,11 @@ loop do
   
   begin
     player_pick_square(board)
+    winner = check_winner(board)
+    draw_board(board)
+    if winner != nil
+      break
+    end
     computer_picks_square(board)
     winner = check_winner(board)
     draw_board(board)
