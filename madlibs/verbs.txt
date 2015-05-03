@@ -585,6 +585,7 @@ try
 tug
 tumble
 turn
+twerk
 twist
 type
 undress
